@@ -1,0 +1,37 @@
+<mat-card class="wrapper">
+    <mat-card-title>Galera</mat-card-title>
+    <mat-card-content>
+
+      <mat-input-container>
+        <input matInput
+          [(ngModel)]="searchQuery"
+          placeholder="Search"
+          type="text"
+        />
+      </mat-input-container>
+      <button type="button" class="btn btn-secundary" mat-raised-button (click)="search()">procurar</button>
+
+      <mat-list *ngIf='users'>
+
+        <mat-list-item *ngFor='let user of users' >
+            <img style="width:10%" src="../assets/images/minerva.jpg" />
+
+            <a [routerLink]="['/users/profile', user._id]" >{{user.name}} - {{user.age}} - {{user.gender}}</a>
+
+            <button  type="button" class="btn btn-info" (click)="like(user._id)">Curti</button>
+            <button style="margin-left:5px, margin-bottom:200px" type="button" class="btn btn-warning" (click)="dislike(user._id)">neh</button>
+        </mat-list-item>
+      </mat-list>
+
+      <h2 *ngIf='!users'>Não tem ninguêm ;(</h2>
+
+      <button [disabled]='page <= 1' mat-raised-button (click)='prevPage()'>Previous</button>
+      <button
+        mat-raised-button
+        [disabled]='!users || users.length < 10'
+        (click)='nextPage()'
+      >
+        Next
+      </button>
+    </mat-card-content>
+  </mat-card>

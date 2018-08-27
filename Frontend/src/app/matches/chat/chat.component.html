@@ -1,0 +1,27 @@
+<mat-card class="wrapper">
+    <mat-card-title>bate-papo uol</mat-card-title>
+    <mat-card-content>
+      <mat-list *ngIf='messages'>
+        <mat-list-item *ngFor='let message of messages' >
+          <div [class]='message.style'>
+            {{message.from}}:
+            <br/>
+            <strong>{{message.text}}</strong>
+          </div>
+        </mat-list-item>
+      </mat-list>
+
+      <h2 *ngIf='!messages'>Puxa assunto com o crush :)</h2>
+
+
+      <mat-input-container>
+          <input matInput
+            #input
+            placeholder="mensagem"
+            type="text"
+          />
+        </mat-input-container>
+        <button type="button" class="btn btn-info" mat-raised-button (click)="send(input.value)">enviar</button>
+
+    </mat-card-content>
+  </mat-card>

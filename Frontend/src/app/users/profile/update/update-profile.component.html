@@ -1,0 +1,76 @@
+
+<h1>Create profile</h1>
+<form *ngIf="user" #createProfileForm='ngForm' (submit) ="update()">
+  <div class="form-group">
+    <label for="name">Nome</label>
+    <input
+    type="text"
+    class="form-control"
+    id="name"
+    name="name"
+    [(ngModel)]="user.name"
+    #name="ngModel"
+    required />
+    <span [hidden]="name.valid || name.pristine">
+      Amor, vc precisa de um nome!
+    </span>
+  </div>
+
+  <div class="form-group">
+    <label for="age">Idade</label>
+    <input
+    type="number"
+    min = 18
+    max = 120
+    class="form-control"
+    id="age"
+    name="age"
+    [(ngModel)]="user.age"
+    #age="ngModel"
+    required />
+    <span [hidden]="age.valid || age.pristine">
+      Bejamin burton, its you?!
+    </span>
+  </div>
+
+  <div class="form-group">
+    <label for="location">Prédio</label>
+    <input
+    type="text"
+    class="form-control"
+    id="location"
+    name="location"
+    [(ngModel)]="user.location"
+    #password="ngModel"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="gender">Sexo</label>
+    <select
+    class="form-control"
+    id="gender"
+    name="gender"
+    [(ngModel)]="user.gender">
+    <option></option>
+    <option *ngFor="let gen of ['Male', 'Female', 'Other']" [value]="gen">{{gen}}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="interested">Interesse</label>
+    <select
+    class="form-control"
+    id="interested"
+    name="interested"
+    [(ngModel)]="user.interested">
+    <option *ngFor="let gen of ['Male', 'Female', 'All']" [value]="gen">{{gen}}</option>
+    </select>
+  </div>
+
+  <button
+  type="submit"
+  class="btn btn-success"
+  [disabled]="!createProfileForm.form.valid">
+  feshow</button>
+</form>
